@@ -1,0 +1,24 @@
+{
+    "info": [
+        "<h1>Prototyp #2</h1>",
+        "test"
+    ],
+    "points": [
+        {
+            "pos": [
+                37,
+                70
+            ],
+            "name": "Vorderachse",
+            "title": "Vorderachse"
+        },
+        {
+            "pos": [
+                63,
+                65
+            ],
+            "name": "Ultraschallsensoren",
+            "title": "Ultraschallsensoren"
+        }
+    ]
+}

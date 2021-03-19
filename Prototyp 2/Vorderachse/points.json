@@ -1,0 +1,16 @@
+{
+    "info": [
+        "<h1>Vorderachse</h1>",
+        "Die Vorderachse übernimmt die Lenkung des Autos."
+    ],
+    "points": [
+        {
+            "pos": [
+                50,
+                50
+            ],
+            "name": "Lenkaktor",
+            "title": "Lenkaktor"
+        }
+    ]
+}
