@@ -4,6 +4,10 @@ let padding, r_height, r_width, p_height, p_width
 let height, width
 
 
+let videos_load_start = 0
+let videos_load_end = 0
+
+
 let animating = false
 let origin = "Prototyp 2"
 let state = { path: origin }
@@ -20,15 +24,17 @@ function handleError() {
 
 
 window.onload = start
-window.onresize = start
+window.onresize = () => location.reload()
 
 async function start() {
     header = document.getElementById('header')
     main_wrapper = document.getElementById('main')
     path_line = document.getElementById('current_path')
-    manual = [document.getElementById('manual'), document.getElementById('manual_ok')]
+    manual = [document.getElementById('manual'), document.getElementById('manual_ok'), document.getElementById('wait_msg')]
     back_button = document.getElementById('back_button')
 
+
+    //setup formatting of main wrapper
     presentation_aspect = 21 / 9
     video_aspect = 3200 / 2000
 
@@ -57,13 +63,18 @@ async function start() {
     main_wrapper.style.height = height + 'px'
     main_wrapper.style.width = width + 'px'
 
-
+    // load all frames into dom and activate the root frame
     await load(origin)
+
+    await wait(() => { return videos_load_end >= videos_load_start }, "video load")
+
+    console.log("opening video")
     setPathLine()
     selectActiveFrame()
 
+    // add event handlers for back_button and manual
     manual[1].onclick = () => {
-        document.body.removeChild(manual[0])
+        manual[0].classList.add('inactive')
         openFrame()
     }
 
@@ -101,6 +112,14 @@ async function start() {
     }
 
 
+}
+
+function videoLoad() {
+    videos_load_end++
+    if (videos_load_end < videos_load_start)
+        manual[2].innerText = `Bitte warten. Die Animationen werden geladen (${videos_load_end / videos_load_start * 100}%)`
+    else
+        manual[2].innerText = "Die Animationen haben geladen. 'OK' drücken um zu starten!"
 }
 
 function setPathLine() {
@@ -179,11 +198,15 @@ async function create(path) {
     intro.className = "intro"
     intro.src = path + '/intro.mp4'
     intro.onerror = handleError
+    intro.oncanplaythrough = videoLoad
 
     let outro = document.createElement("video")
     outro.className = "outro inactive"
     outro.src = path + '/outro.mp4'
     outro.onerror = handleError
+    outro.oncanplaythrough = videoLoad
+
+    videos_load_start += 2
 
     let point_wrapper = document.createElement("div")
     point_wrapper.className = "points inactive"
@@ -219,4 +242,32 @@ async function create(path) {
     frame.appendChild(info_wrapper)
 
     main_wrapper.appendChild(frame)
+}
+
+function wait(fnkt, name) {
+    if (name) console.log("waiting for", name)
+    return new Promise((x) => {
+        let resolver = null
+        let resolve_call = () => resolver()
+
+        resolver = async () => {
+
+            try {
+
+
+                if (await fnkt()) {
+                    if (name) console.log("wait done for", name)
+                    x()
+                    return
+                }
+
+            } catch (e) {
+                console.log("error in", name, e)
+            }
+
+            setTimeout(resolve_call, 30)
+        }
+
+        resolver()
+    })
 }
