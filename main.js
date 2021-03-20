@@ -126,8 +126,10 @@ function resize() {
     for (let elt of document.getElementsByClassName('points'))
         elt.style.width = height * video_aspect + 'px'
 
-    for (let elt of document.getElementsByClassName('info'))
+    for (let elt of document.getElementsByClassName('info')) {
         elt.style.left = height * video_aspect + 'px'
+        elt.style.width = width - height * video_aspect + 'px'
+    }
 }
 
 function videoLoad() {
