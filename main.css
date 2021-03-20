@@ -9,6 +9,21 @@ body {
     font-family: sans-serif;
 }
 
+.manual {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 30%;
+    height: 30%;
+
+    background-color: #dddddd;
+    border: 2px solid black ;
+
+    z-index: 1000;
+    transform: translate(-50%,-50%);
+}
+
 .header {
     position: absolute;
 
@@ -34,48 +49,69 @@ body {
 
 main {
     position: absolute;
-
     background-color: #bbbbbb;
 }
 
-main video {
+.frame {
     position: absolute;
     top: 0px;
-    left: 0px;
     height: 100%;
-
-    transition: 0.2s opacity linear;
-}
-
-main video.active {
+    width: 100%;
     opacity: 1;
+
+    transition: 0.5s opacity linear, 0.001s top linear;
 }
 
-main video.inactive {
+.frame.inactive {
     opacity: 0;
+    top: 100%;
+
+    transition: 0.5s opacity linear 0.5s,  0.001s top linear 1s;
 }
 
-main .points {
+.frame video {
     position: absolute;
     top: 0px;
     left: 0px;
     height: 100%;
+
+    opacity: 1;
+
+    transition: 0.01s opacity linear;
 }
 
-main .points .point {
-    position: absolute;
+.frame video.inactive {
+   opacity: 0;
+   transition: 0.01s opacity linear 0.01s;
+}
 
-    cursor: pointer;
+.frame .points {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+
+    opacity: 1;
+
     transition: 2s opacity ease-in-out;
 }
 
-main .points.hidden .point {
-    display: none;
+.frame .points.inactive  {
     opacity: 0;
-  }
+}
+
+.frame .points .point {
+    position: absolute;
+
+    cursor: pointer;
+  
+    transform: translate(-15px,-15px);
+}
 
 
-main .points .point h1 {
+
+
+.frame .points .point h1 {
     position: absolute;
     top: 0px;
     left: 30px;
@@ -100,13 +136,13 @@ main .points .point h1 {
     overflow: hidden;
 }
 
-main .points .point:hover h1 {
+.frame .points .point:hover h1 {
     padding: 5px;
     width: 250px;
 }
 
 
-main .points .point i {
+.frame .points .point i {
    
 
     position: absolute;
@@ -129,10 +165,43 @@ main .points .point i {
     height: 30px;
 }
 
-main .info {
+.frame .info {
     position: absolute;
     top: 0px;
 
     padding: 10px;
 }
 
+.path {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+   
+
+    z-index: 100;
+
+    background-color: #555555;
+}
+
+.path * {
+    display: inline-block;
+    font-size: 30px;
+
+    margin: 0px;
+    padding: 5px;
+}
+
+.path #back_button {
+    background-color: #eb3434;
+    cursor: pointer;
+}
+
+.path #back_button.inactive {
+    background-color: #dddddd;
+    cursor:auto;
+}
+
+.path #current_path {
+    color: #dddddd;
+}

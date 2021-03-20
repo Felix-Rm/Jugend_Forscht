@@ -6,19 +6,27 @@
     "points": [
         {
             "pos": [
-                37,
-                70
+                39,
+                72
             ],
             "name": "Vorderachse",
             "title": "Vorderachse"
         },
         {
             "pos": [
-                63,
-                65
+                65,
+                67
             ],
             "name": "Ultraschallsensoren",
             "title": "Ultraschallsensoren"
+        },
+        {
+            "pos": [
+                68,
+                54
+            ],
+            "name": "Hinterachse",
+            "title": "Hinterachse"
         }
     ]
 }

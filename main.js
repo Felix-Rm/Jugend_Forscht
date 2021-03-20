@@ -1,48 +1,44 @@
-let header, video1_player, video2_player, main_wrapper, point_wrapper, info_wrapper, path_line
-let state = undefined//JSON.parse(localStorage.getItem('state'))
-
-if (!state)
-    state = {
-        path: "Prototyp 2"
-    }
+let header, main_wrapper, path_line, manual, back_button
+let presentation_aspect, video_aspect
+let padding, r_height, r_width, p_height, p_width
+let height, width
 
 
-setInterval(safePath, 500)
+let animating = false
+let origin = "Prototyp 2"
+let state = { path: origin }
+
+
 
 function handleError() {
     console.log("error", state)
-    state.path = "Prototyp 2"
-    safePath()
-    location.reload()
+    state.path = origin
+
+    //alert("Es ist leider ein Fehler aufgetreten!\n\nDie Seite wird nun neu laden um den Fehler zu beheben.")
+    //location.reload()
 }
 
-
-function safePath() {
-    localStorage.setItem('state', JSON.stringify(state))
-}
 
 window.onload = start
 window.onresize = start
 
-function start() {
+async function start() {
     header = document.getElementById('header')
     main_wrapper = document.getElementById('main')
-    video1_player = document.getElementById('video1')
-    video2_player = document.getElementById('video2')
-    point_wrapper = document.getElementById('points')
-    info_wrapper = document.getElementById('info')
     path_line = document.getElementById('current_path')
+    manual = [document.getElementById('manual'), document.getElementById('manual_ok')]
+    back_button = document.getElementById('back_button')
 
-    const presentation_aspect = 21 / 9
-    const video_aspect = 3200 / 2000
+    presentation_aspect = 21 / 9
+    video_aspect = 3200 / 2000
 
-    const padding = 25
-    const r_height = window.innerHeight - header.offsetHeight
-    const r_width = window.innerWidth
-    const p_height = r_height - 2 * padding
-    const p_width = r_width - 2 * padding
+    padding = 25
+    r_height = window.innerHeight - header.offsetHeight
+    r_width = window.innerWidth
+    p_height = r_height - 2 * padding
+    p_width = r_width - 2 * padding
 
-    let width, height, top, left
+    let top, left
 
     if (p_width / p_height > presentation_aspect) {
         height = p_height
@@ -61,10 +57,104 @@ function start() {
     main_wrapper.style.height = height + 'px'
     main_wrapper.style.width = width + 'px'
 
-    point_wrapper.style.width = height * video_aspect + 'px'
-    info_wrapper.style.left = height * video_aspect + 'px'
 
-    open()
+    await load(origin)
+    setPathLine()
+    selectActiveFrame()
+
+    manual[1].onclick = () => {
+        document.body.removeChild(manual[0])
+        openFrame()
+    }
+
+    back_button.onclick = () => {
+        if (animating)
+            return
+        if (state.path.split('/').length == 1)
+            return
+
+        let frame = document.getElementById(state.path)
+        let intro = frame.getElementsByClassName('intro')[0]
+        let outro = frame.getElementsByClassName('outro')[0]
+        let points = frame.getElementsByClassName('points')[0]
+
+        points.classList.add('inactive')
+        intro.classList.add("inactive")
+        outro.classList.remove("inactive")
+
+        animating = true
+        outro.currentTime = 0
+        outro.play()
+
+        outro.onended = () => {
+            animating = false
+            let p = state.path.split('/')
+            state.path = p.slice(0, p.length - 1).join('/')
+
+            setPathLine()
+            let frame = selectActiveFrame()
+            let intro = frame.getElementsByClassName("intro")[0]
+            let points = frame.getElementsByClassName("points")[0]
+            intro.currentTime = intro.duration;
+            points.classList.remove('inactive')
+        }
+    }
+
+
+}
+
+function setPathLine() {
+    path_line.innerHTML = "Bauelement: " + state.path.replace(/\//g, ' => ')
+}
+
+function selectActiveFrame() {
+    for (let elt of document.getElementsByClassName('frame')) {
+        elt.classList.add('inactive')
+    }
+
+    let frame = document.getElementById(state.path)
+    frame.classList.remove('inactive')
+
+    let intro = frame.getElementsByClassName('intro')[0]
+    let outro = frame.getElementsByClassName('outro')[0]
+    intro.classList.remove("inactive")
+    outro.classList.add("inactive")
+    outro.currentTime = 0
+    intro.currentTime = 0
+
+    if (state.path.split('/').length == 1) back_button.classList.add("inactive")
+    else back_button.classList.remove("inactive")
+
+    return frame
+}
+
+function openFrame() {
+
+    setPathLine()
+
+    let frame = selectActiveFrame()
+
+
+    let video = frame.getElementsByClassName('intro')[0]
+    animating = true
+
+    video.currentTime = 0
+
+    video.play()
+
+    video.onended = () => {
+        animating = false
+        let points = frame.getElementsByClassName('points')[0]
+        points.classList.remove('inactive')
+    }
+}
+
+async function load(path) {
+    await create(path)
+    let data = await loadJson(path + '/points.json')
+    for (let element of data['points']) {
+        await load(path + '/' + element['name'])
+    }
 }
 
 
@@ -74,29 +164,36 @@ async function loadJson(filepath) {
         return (await req.json())
     else
         handleError()
-
 }
 
 
-async function open() {
-    path_line.innerHTML = state.path
+async function create(path) {
 
-    const vp = state.path.split('/').length % 2 == 0 ? video1_player : video2_player
-    const nvp = state.path.split('/').length % 2 == 0 ? video2_player : video1_player
-    vp.oncanplay = null
-    vp.onerror = null
-    vp.onended = null
+    data = await loadJson(path + "/points.json")
 
-    vp.className = "active"
-    nvp.className = "inactive"
+    let frame = document.createElement("div")
+    frame.className = "frame inactive"
+    frame.id = path
 
-    vp.src = state.path + "/intro.mp4"
-    data = await loadJson(state.path + "/points.json")
+    let intro = document.createElement("video")
+    intro.className = "intro"
+    intro.src = path + '/intro.mp4'
+    intro.onerror = handleError
 
+    let outro = document.createElement("video")
+    outro.className = "outro inactive"
+    outro.src = path + '/outro.mp4'
+    outro.onerror = handleError
+
+    let point_wrapper = document.createElement("div")
+    point_wrapper.className = "points inactive"
+    point_wrapper.style.width = height * video_aspect + 'px'
+
+    let info_wrapper = document.createElement("div")
+    info_wrapper.className = "info"
     info_wrapper.innerHTML = data['info'].join(' ')
+    info_wrapper.style.left = height * video_aspect + 'px'
 
-    point_wrapper.classList.add('hidden')
-    point_wrapper.innerHTML = ""
     for (let entry of data['points']) {
         let elt = document.createElement('div')
         elt.className = 'point'
@@ -107,19 +204,19 @@ async function open() {
             <i class="material-icons">add</i>
         `
         elt.onclick = () => {
+            if (animating)
+                return
             state.path += '/' + entry.name
-            open()
+            openFrame()
         }
 
         point_wrapper.appendChild(elt)
     }
 
-    vp.oncanplay = vp.play
-    vp.play()
-    vp.onerror = handleError
+    frame.appendChild(intro)
+    frame.appendChild(outro)
+    frame.appendChild(point_wrapper)
+    frame.appendChild(info_wrapper)
 
-    vp.onended = () => {
-        point_wrapper.classList.remove('hidden')
-    }
-
+    main_wrapper.appendChild(frame)
 }
