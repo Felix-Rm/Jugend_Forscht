@@ -115,7 +115,7 @@ main {
 
     cursor: pointer;
   
-    transform: translate(-15px,-15px);
+    transform: translate(-1vmin,-1vmin);
 }
 
 .frame .points .point * {
