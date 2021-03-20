@@ -248,7 +248,7 @@ async function create(path) {
         elt.style.top = entry.pos[1] + '%'
         elt.innerHTML += `
             <h1>${entry.title}</h1>
-            <p class="material">+</p>
+            <p class="material-icons">add</p>
         `
         elt.onclick = () => {
             if (animating)
