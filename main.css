@@ -6,7 +6,7 @@ body {
     background-color: #dddddd;
     overflow: hidden;
 
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .manual {
@@ -22,10 +22,15 @@ body {
 
     z-index: 1000;
     transform: translate(-50%,-50%);
+
 }
 
 .manual.inactive {
     display: none;
+}
+
+.manual * {
+    font-size: 2vmin;
 }
 
 .header {
@@ -41,7 +46,7 @@ body {
 
 .header h1 {
     color: #dddddd;
-    font-size: 35px;
+    font-size: 3vmin;
     padding: 0px;
     margin: 12.5px;
     width: 100%;
@@ -118,14 +123,14 @@ main {
 .frame .points .point h1 {
     position: absolute;
     top: 0px;
-    left: 30px;
-    width: 0px;
-    height: 30px;
+    left: 2vmin;
+    height: 2vmin;
+    max-width: 0px;
 
     margin: 0px;
-    font-size: 20px;
+    font-size: 1.5vmin;
 
-    padding: 5px 0px;
+    padding: .25vmin 0px;
    
 
     overflow: hidden;
@@ -136,13 +141,14 @@ main {
     color: black;
 
 
-    transition: 1s width ease-in-out, padding 1s linear;
+    transition: .5s max-width ease-in-out, 1s padding ease-in-out ;
     overflow: hidden;
 }
 
 .frame .points .point:hover h1 {
-    padding: 5px;
-    width: 250px;
+    padding: .25vmin;
+    max-width: 100vmax;
+    transition: .5s max-width ease-in-out;
 }
 
 
@@ -153,7 +159,7 @@ main {
     top: 0px;
     left: 0px;
 
-    font-size: 20px;   
+    font-size: 1.5vmin;   
     font-weight: 900;
     text-align: center;
     vertical-align: middle;
@@ -164,9 +170,9 @@ main {
     border: 2px solid #34a1eb;
    
 
-    padding: 2.5px;
-    width: 30px;
-    height: 30px;
+    padding: .1vmin;
+    width: 2vmin;
+    height: 2vmin;
 }
 
 .frame .info {
@@ -174,15 +180,18 @@ main {
     top: 0px;
 
     padding: 10px;
+
+   
+}
+
+.frame .info * {
+    font-size: 2vmin;
 }
 
 .path {
     position: absolute;
     top: 0px;
     left: 0px;
-
-   
-
     z-index: 100;
 
     background-color: #555555;
@@ -190,10 +199,10 @@ main {
 
 .path * {
     display: inline-block;
-    font-size: 30px;
+    font-size: 2vmin;
 
     margin: 0px;
-    padding: 5px;
+    padding: .3vmin;
 }
 
 .path #back_button {

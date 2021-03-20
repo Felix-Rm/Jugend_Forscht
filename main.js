@@ -10,8 +10,13 @@ let videos_load_end = 0
 
 let animating = false
 let origin = "Prototyp 2"
-let state = { path: origin }
 
+
+let state = JSON.parse(localStorage.getItem('state'))
+
+if (!state) state = { path: origin }
+
+setInterval(() => localStorage.setItem('state', JSON.stringify(state)), 1000)
 
 
 function handleError() {
@@ -24,11 +29,7 @@ function handleError() {
 
 
 window.onload = start
-window.onresize = () => {
-    setTimeout(function () {
-        window.location.reload();
-    });
-}
+window.onresize = resize
 
 async function start() {
     header = document.getElementById('header')
@@ -38,40 +39,15 @@ async function start() {
     back_button = document.getElementById('back_button')
 
 
-    //setup formatting of main wrapper
-    presentation_aspect = 21 / 9
-    video_aspect = 3200 / 2000
-
-    padding = 25
-    r_height = window.innerHeight - header.offsetHeight
-    r_width = window.innerWidth
-    p_height = r_height - 2 * padding
-    p_width = r_width - 2 * padding
-
-    let top, left
-
-    if (p_width / p_height > presentation_aspect) {
-        height = p_height
-        width = height * presentation_aspect
-        top = header.offsetHeight + padding
-        left = (r_width - width) / 2
-    } else {
-        width = p_width
-        height = width / presentation_aspect
-        top = header.offsetHeight + (r_height - height) / 2
-        left = padding
-    }
-
-    main_wrapper.style.top = top + 'px'
-    main_wrapper.style.left = left + 'px'
-    main_wrapper.style.height = height + 'px'
-    main_wrapper.style.width = width + 'px'
+    resize()
 
     // load all frames into dom and activate the root frame
     await load(origin)
 
     setPathLine()
     selectActiveFrame()
+
+    manual[2].innerText = "Die Animationen haben geladen. 'OK' drücken um zu starten!"
 
     // add event handlers for back_button and manual
     manual[1].onclick = () => {
@@ -115,12 +91,42 @@ async function start() {
 
 }
 
+function resize() {
+    //setup formatting of main wrapper
+    presentation_aspect = 21 / 9
+    video_aspect = 3200 / 2000
+
+    padding = 25
+    r_height = window.innerHeight - header.offsetHeight
+    r_width = window.innerWidth
+    p_height = r_height - 2 * padding
+    p_width = r_width - 2 * padding
+
+    let top, left
+
+    if (p_width / p_height > presentation_aspect) {
+        height = p_height
+        width = height * presentation_aspect
+        top = header.offsetHeight + padding
+        left = (r_width - width) / 2
+    } else {
+        width = p_width
+        height = width / presentation_aspect
+        top = header.offsetHeight + (r_height - height) / 2
+        left = padding
+    }
+
+    main_wrapper.style.top = top + 'px'
+    main_wrapper.style.left = left + 'px'
+    main_wrapper.style.height = height + 'px'
+    main_wrapper.style.width = width + 'px'
+}
+
 function videoLoad() {
     videos_load_end++
-    if (videos_load_end < videos_load_start)
-        manual[2].innerText = `Bitte warten. Die Animationen werden geladen (${videos_load_end / videos_load_start * 100}%)`
-    else
-        manual[2].innerText = "Die Animationen haben geladen. 'OK' drücken um zu starten!"
+
+    manual[2].innerText = `Bitte warten. Die Animationen werden geladen (${videos_load_end / videos_load_start * 100}%). Beim ersten mal Laden kann dies ein paar Sekunden dauern.`
+
 }
 
 function setPathLine() {
