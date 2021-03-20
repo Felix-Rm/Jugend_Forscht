@@ -74,7 +74,7 @@ main {
 
 .frame.inactive {
     opacity: 0;
-    top: 100%;
+    top: 100vh;
 
     transition: 0.5s opacity linear 0.5s,  0.001s top linear 1s;
 }
@@ -118,29 +118,24 @@ main {
     transform: translate(-15px,-15px);
 }
 
-
-
-
-.frame .points .point h1 {
+.frame .points .point * {
     position: absolute;
     top: 0px;
-    left: 2vmin;
     height: 2vmin;
-    max-width: 0px;
 
     margin: 0px;
     font-size: 1.5vmin;
+    line-height: 1.7vmin;
+}
 
-    padding: .25vmin 0px;
-   
-
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.frame .points .point h1 {
+    left: 2vmin;
+    max-width: 0px;
 
     background-color: #dddddd;
     color: black;
 
+    padding: .25vmin 0px;
 
     transition: .5s max-width ease-in-out, 1s padding ease-in-out ;
     overflow: hidden;
@@ -153,36 +148,29 @@ main {
 }
 
 
-.frame .points .point i {
-   
-
-    position: absolute;
-    top: 0px;
+.frame .points .point p {  
     left: 0px;
 
-    font-size: 1.5vmin;   
     font-weight: 900;
     text-align: center;
-    vertical-align: middle;
 
     background-color: #dddddd;
     color: black;
     border-radius: 2px;
     border: 2px solid #34a1eb;
-   
 
-    padding: .1vmin;
     width: 2vmin;
-    height: 2vmin;
 }
 
 .frame .info {
     position: absolute;
     top: 0px;
 
+    height: 99%;
+
     padding: 10px;
 
-   
+    overflow-y: scroll;
 }
 
 .frame .info * {
@@ -199,20 +187,18 @@ main {
 }
 
 .path * {
-    display: inline-block;
     font-size: 2vmin;
-
     margin: 0px;
     padding: .3vmin;
 }
 
 .path #back_button {
-    background-color: #eb3434;
+    color: #eb3434;
     cursor: pointer;
 }
 
 .path #back_button.inactive {
-    background-color: inherit;
+    color: inherit;
     cursor:auto;
 }
 

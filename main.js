@@ -38,12 +38,10 @@ async function start() {
     manual = [document.getElementById('manual'), document.getElementById('manual_ok'), document.getElementById('wait_msg')]
     back_button = document.getElementById('back_button')
 
-
-    resize()
-
     // load all frames into dom and activate the root frame
     await load(origin)
 
+    resize()
     setPathLine()
     selectActiveFrame()
 
@@ -96,9 +94,12 @@ function resize() {
     presentation_aspect = 21 / 9
     video_aspect = 3200 / 2000
 
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
     padding = 25
-    r_height = window.innerHeight - header.offsetHeight
-    r_width = window.innerWidth
+    r_height = vh - header.offsetHeight
+    r_width = vw
     p_height = r_height - 2 * padding
     p_width = r_width - 2 * padding
 
@@ -120,6 +121,13 @@ function resize() {
     main_wrapper.style.left = left + 'px'
     main_wrapper.style.height = height + 'px'
     main_wrapper.style.width = width + 'px'
+
+
+    for (let elt of document.getElementsByClassName('points'))
+        elt.style.width = height * video_aspect + 'px'
+
+    for (let elt of document.getElementsByClassName('info'))
+        elt.style.left = height * video_aspect + 'px'
 }
 
 function videoLoad() {
@@ -226,12 +234,12 @@ async function create(path) {
 
     let point_wrapper = document.createElement("div")
     point_wrapper.className = "points inactive"
-    point_wrapper.style.width = height * video_aspect + 'px'
+
 
     let info_wrapper = document.createElement("div")
     info_wrapper.className = "info"
     info_wrapper.innerHTML = data['info'].join(' ')
-    info_wrapper.style.left = height * video_aspect + 'px'
+
 
     for (let entry of data['points']) {
         let elt = document.createElement('div')
@@ -240,7 +248,7 @@ async function create(path) {
         elt.style.top = entry.pos[1] + '%'
         elt.innerHTML += `
             <h1>${entry.title}</h1>
-            <i class="material-icons">add</i>
+            <p class="material">+</p>
         `
         elt.onclick = () => {
             if (animating)

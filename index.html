@@ -18,16 +18,26 @@
         <h1>Interaktive Präsentation - Entwicklung eines Fahrzeugmodels auf der Grundlage des autonomen Fahrens</h1>
     </div>
 
-    <div id="manual" class="manual">
-        <p id="wait_msg"></p>
-        <button id="manual_ok">Ok</button>
-    </div>
+    <table id="manual" class="manual">
+        <tr>
+            <td>
+                <p id="wait_msg"></p>
+            </td>
+            <td><button id="manual_ok">Ok</button></td>
+        </tr>
+    </table>
 
     <main id="main">
-        <div id="path" class="path">
-            <p id="back_button" class="inactive">Zurück</p>
-            <p id="current_path"></p>
-        </div>
+        <table id="path" class="path">
+            <tr>
+                <td>
+                    <p id="back_button" class="material-icons inactive">keyboard_backspace</p>
+                </td>
+                <td>
+                    <p id="current_path"></p>
+                </td>
+            </tr>
+        </table>
 
     </main>
 
