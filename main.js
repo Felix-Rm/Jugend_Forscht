@@ -24,7 +24,11 @@ function handleError() {
 
 
 window.onload = start
-window.onresize = () => location.reload()
+window.onresize = () => {
+    setTimeout(function () {
+        window.location.reload();
+    });
+}
 
 async function start() {
     header = document.getElementById('header')
