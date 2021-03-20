@@ -193,12 +193,12 @@ main {
 }
 
 .path #back_button {
-    color: #eb3434;
+    color: #34a1eb;
     cursor: pointer;
 }
 
 .path #back_button.inactive {
-    color: inherit;
+    color: #00000033;
     cursor:auto;
 }
 
