@@ -1,16 +1,48 @@
 {
     "info": [
         "<h1>Vorderachse</h1>",
-        "<p>Die Vorderachse übernimmt die Lenkung des Autos.</p>"
+        "<p>Die Lenkung besteht aus zwei Achsschenkeln mit jeweils einem Rad. Verbunden sind diese durch die Spurstange, welche durch das Schubglied an den Lenkaktor (28BYJ-48 Stepper Motor) gekoppelt ist. Das Schubglied besteht bei diesem Prototyp aus Trespa, das sich PLA beim ersten Prototyp unter den Kräften verformte. Die Lenkung bekommt Positionsfeedback durch ein an den Lenkaktor gekoppeltes Potentiometer. Da die beiden Achsschenkel nicht parallel zueinander sind, lenkt das innere Rad immer etwas mehr ein als das Äußere. Dadurch fährt das Auto in Kurven auf einer Kreisbahn, welche durch die Bordcomputer leicht berechnet werden können.</p>"
     ],
     "points": [
         {
             "pos": [
-                50,
+                40,
                 50
             ],
-            "name": "Lenkaktor",
+            "name": "",
             "title": "Lenkaktor"
+        },
+        {
+            "pos": [
+                35,
+                40
+            ],
+            "name": "",
+            "title": "Achsschenkel"
+        },
+        {
+            "pos": [
+                43,
+                64
+            ],
+            "name": "",
+            "title": "Lenkstange"
+        },
+        {
+            "pos": [
+                37,
+                64
+            ],
+            "name": "",
+            "title": "Schubglied"
+        },
+        {
+            "pos": [
+                55,
+                43
+            ],
+            "name": "",
+            "title": "Elektrische&nbsp;Steckverbindung"
         }
     ]
 }

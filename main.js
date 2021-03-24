@@ -185,15 +185,6 @@ function openFrame() {
     }
 }
 
-async function load(path) {
-    await create(path)
-    let data = await loadJson(path + '/points.json')
-    for (let element of data['points']) {
-        await load(path + '/' + element['name'])
-    }
-}
-
-
 async function loadJson(filepath) {
     let req = await fetch(filepath)
     if (req.ok)
@@ -215,7 +206,7 @@ async function loadVideo(filepath) {
 }
 
 
-async function create(path) {
+async function load(path) {
 
     data = await loadJson(path + "/points.json")
 
@@ -244,8 +235,9 @@ async function create(path) {
 
 
     for (let entry of data['points']) {
+
         let elt = document.createElement('div')
-        elt.className = 'point'
+        elt.className = 'point' + (entry['name'].length > 0 ? '' : ' hint')
         elt.style.left = entry.pos[0] + '%'
         elt.style.top = entry.pos[1] + '%'
         elt.innerHTML += `
@@ -260,6 +252,11 @@ async function create(path) {
         }
 
         point_wrapper.appendChild(elt)
+
+        if (entry['name'].length > 0) {
+            await load(path + '/' + entry['name'])
+        }
+
     }
 
     frame.appendChild(intro)

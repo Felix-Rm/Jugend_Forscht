@@ -1,0 +1,32 @@
+{
+    "info": [
+        "<h1>Kamera</h1>",
+        "<p>Die Kamera wird für die Erkennung des Straßenverlaufd benötigt. Da es Probleme mit dem Sichtfeld der Kamera gab, wurden mehrere Positionen getestet. Letztendlich hat sich die Position weit hinten und oben auf dem Dach des Autos bewährt. Verbunden ist die Kamera mit dem Bordcomputer (Raspberry Pi). Dieser ist für die Bearbeitung und Übertragung des Videostreams verantwortlich.</p>"
+    ],
+    "points": [
+        {
+            "pos": [
+                35,
+                57
+            ],
+            "name": "",
+            "title": "Kameraposition&nbsp;#1"
+        },
+        {
+            "pos": [
+                51.5,
+                29
+            ],
+            "name": "",
+            "title": "Kameraposition&nbsp;#2"
+        },
+        {
+            "pos": [
+                58,
+                19
+            ],
+            "name": "",
+            "title": "Kameraposition&nbsp;#3"
+        }
+    ]
+}

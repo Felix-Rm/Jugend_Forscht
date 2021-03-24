@@ -1,7 +1,7 @@
 {
     "info": [
         "<h1>Prototyp #2</h1>",
-        "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At tellus at urna condimentum mattis pellentesque id nibh tortor. Purus sit amet luctus venenatis lectus magna. Scelerisque eleifend donec pretium vulputate. Diam quam nulla porttitor massa id neque. Sagittis aliquam malesuada bibendum arcu vitae. Consectetur purus ut faucibus pulvinar. Sit amet nisl purus in mollis nunc sed. Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel. Non nisi est sit amet facilisis magna etiam tempor. Amet risus nullam eget felis. Commodo quis imperdiet massa tincidunt nunc pulvinar. Dignissim diam quis enim lobortis scelerisque. Volutpat ac tincidunt vitae semper. Aliquam vestibulum morbi blandit cursus risus at ultrices mi. Lorem ipsum dolor sit amet consectetur. Sodales ut eu sem integer vitae. Duis ut diam quam nulla porttitor massa. Iaculis urna id volutpat lacus laoreet non curabitur gravida arcu. In ornare quam viverra orci sagittis eu volutpat odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At tellus at urna condimentum mattis pellentesque id nibh tortor. Purus sit amet luctus venenatis lectus magna. Scelerisque eleifend donec pretium vulputate. Diam quam nulla porttitor massa id neque. Sagittis aliquam malesuada bibendum arcu vitae. Consectetur purus ut faucibus pulvinar. Sit amet nisl purus in mollis nunc sed. Malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel. Non nisi est sit amet facilisis magna etiam tempor. Amet risus nullam eget felis. Commodo quis imperdiet massa tincidunt nunc pulvinar. Dignissim diam quis enim lobortis scelerisque. Volutpat ac tincidunt vitae semper. Aliquam vestibulum morbi blandit cursus risus at ultrices mi. Lorem ipsum dolor sit amet consectetur. Sodales ut eu sem integer vitae. Duis ut diam quam nulla porttitor massa. Iaculis urna id volutpat lacus laoreet non curabitur gravida arcu. In ornare quam viverra orci sagittis eu volutpat odio.</p>"
+        "<p>Dies ist der Zweite Prototyp der von uns entwickelt wurde. Er behebt einen Großteil der Probleme, welch beim ersten Prototyp auftraten. Das Gehirn des Autos sind zwei Bordcomputer (Raspberry Pi und Arduino Nano), welche durch eine Serielle Schnittstelle miteinander verbunden sind. Beim zweiten Prototyp hat der Raspberry Pi einen Großteil aller Funktionen an den Arduino abgegeben. Der Arduino steuert nun das Licht, die Lenkung, den Antrieb des Autos und alle fünf Ultraschallsensoren. Diese Übergabe der Aufgaben war notwendig, da der Raspberry Pi bei der Ansteuerung der Hardware aufgrund von Betriebssystem geschuldeten Timing-Problemen nicht zuverlässig funktioniert hat. Weiterhin wurden beim zweiten Prototyp sämtliche offene Kontrollschleifen durch anbringen von weiteren Sensoren geschlossen. Der Aufbau des Autos wurde auch grundlegend Geändert um eine schnellere und kostengünstigere Entwicklung zu gewährleisten.</p>"
     ],
     "points": [
         {
@@ -27,6 +27,46 @@
             ],
             "name": "Hinterachse",
             "title": "Hinterachse"
+        },
+        {
+            "pos": [
+                41,
+                60
+            ],
+            "name": "Rahmen",
+            "title": "Rahmen"
+        },
+        {
+            "pos": [
+                60,
+                26
+            ],
+            "name": "",
+            "title": "Voltmeter"
+        },
+        {
+            "pos": [
+                53,
+                65
+            ],
+            "name": "",
+            "title": "Bordcomputer&nbsp;#1"
+        },
+        {
+            "pos": [
+                55,
+                36
+            ],
+            "name": "Kamera",
+            "title": "Kamera"
+        },
+        {
+            "pos": [
+                52,
+                47
+            ],
+            "name": "",
+            "title": "Akku"
         }
     ]
 }

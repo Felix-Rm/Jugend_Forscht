@@ -1,7 +1,7 @@
 {
     "info": [
         "<h1>Ultraschallsensoren</h1>",
-        "<p>Das auto hat 5 Ultraschallsensoren</p>"
+        "<p>Im Auto sind fünf Ultraschallsensoren verbaut. Sie verfügen über eine Reichweite von bis zu fünf Meter und ein Blickfeld von 30 Grad. Sie werden unter anderem für das automatische Einparken und den Notbremsassistent benötigt. Angesteuert werden die Sensoren über den Mikrocontroller im Auto.</p>"
     ],
     "points": []
 }
