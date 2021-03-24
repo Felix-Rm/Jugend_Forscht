@@ -4,7 +4,7 @@ let padding, r_height, r_width, p_height, p_width
 let height, width
 
 
-let videos_load_start = 10
+let videos_load_start = 12
 let videos_load_end = 0
 
 
