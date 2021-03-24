@@ -6,35 +6,43 @@
     "points": [
         {
             "pos": [
-                25,
-                70
+                26,
+                74
             ],
             "name": "",
             "title": "Elektrische&nbsp;Steckverbindungen&nbsp;Kotflügel"
         },
         {
             "pos": [
-                35,
-                57
+                40,
+                40
             ],
             "name": "",
             "title": "Bordcomputer&nbsp;#2"
         },
         {
             "pos": [
-                40,
-                57
+                60,
+                54
             ],
             "name": "",
             "title": "Stromversorgungsplatine"
         },
         {
             "pos": [
-                80,
-                57
+                64,
+                25
             ],
             "name": "",
             "title": "Ein/Aus&nbsp;Schalter"
+        },
+        {
+            "pos": [
+                70,
+                35
+            ],
+            "name": "",
+            "title": "Anschluss&nbsp;externe&nbsp;Stromversorgung"
         }
     ]
 }

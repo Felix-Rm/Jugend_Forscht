@@ -19,12 +19,14 @@ if (!state) state = { path: origin }
 setInterval(() => localStorage.setItem('state', JSON.stringify(state)), 1000)
 
 
+window.onerror = handleError
+
 function handleError() {
     console.log("error", state)
     state.path = origin
 
-    //alert("Es ist leider ein Fehler aufgetreten!\n\nDie Seite wird nun neu laden um den Fehler zu beheben.")
-    //location.reload()
+    alert("Es ist leider ein Fehler aufgetreten!\n\nDie Seite wird nun neu laden um den Fehler zu beheben.")
+    location.reload()
 }
 
 
@@ -123,7 +125,7 @@ function resize() {
     main_wrapper.style.width = width + 'px'
 
 
-    for (let elt of document.getElementsByClassName('points'))
+    for (let elt of document.querySelectorAll('main .points'))
         elt.style.width = height * video_aspect + 'px'
 
     for (let elt of document.getElementsByClassName('info')) {
@@ -135,7 +137,7 @@ function resize() {
 function videoLoad() {
     videos_load_end++
 
-    manual[2].innerText = `Bitte warten. Die Animationen werden geladen (${videos_load_end / videos_load_start * 100}%). Beim ersten mal Laden kann dies ein paar Sekunden dauern.`
+    manual[2].innerText = `Bitte warten. Die Animationen werden geladen (${parseInt(videos_load_end / videos_load_start * 100)}%). Beim ersten mal Laden kann dies ein paar Sekunden dauern.`
 
 }
 
@@ -244,12 +246,14 @@ async function load(path) {
             <h1>${entry.title}</h1>
             <p class="material-icons">add</p>
         `
-        elt.onclick = () => {
-            if (animating)
-                return
-            state.path += '/' + entry.name
-            openFrame()
-        }
+
+        if (entry['name'].length > 0)
+            elt.onclick = () => {
+                if (animating)
+                    return
+                state.path += '/' + entry.name
+                openFrame()
+            }
 
         point_wrapper.appendChild(elt)
 

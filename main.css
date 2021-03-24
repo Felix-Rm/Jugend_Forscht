@@ -24,7 +24,6 @@ body {
     transform: translate(-50%,-50%);
 
     padding: 1vmin;
-
 }
 
 .manual.inactive {
@@ -33,6 +32,43 @@ body {
 
 .manual * {
     font-size: 2vmin;
+}
+
+.manual tr>td {
+    padding: 10px;
+}
+
+.manual .points {
+    position: absolute;
+    cursor: pointer;
+    height: 1em;
+}
+
+.manual .point p {
+    margin: auto;
+    font-size: 2vmin;
+    font-weight: 900;
+    text-align: center;
+
+    background-color: #dddddd;
+    color: black;
+    border-radius: .1vmin;
+    border: .2vmin solid #34a1eb;
+
+
+    line-height: 2.4vmin;
+
+    height: 2.5vmin;
+    width: 2.5vmin;
+}
+
+.manual .point.hint p{
+    border: .2vmin solid #3aeb34;
+}
+
+
+.manual .indent{
+    padding-left: 3vmin;
 }
 
 .header {
@@ -103,7 +139,7 @@ main {
 
     opacity: 1;
 
-    transition: 2s opacity ease-in-out;
+    transition: .7s opacity ease-in-out;
 }
 
 .frame .points.inactive  {
@@ -117,6 +153,7 @@ main {
   
     transform: translate(-1vmin,-1vmin);
 }
+
 
 .frame .points .point * {
     position: absolute;
@@ -147,7 +184,6 @@ main {
     transition: .5s max-width ease-in-out;
 }
 
-
 .frame .points .point p {  
     left: 0px;
 
@@ -166,6 +202,8 @@ main {
     cursor:auto;
 }
 
+
+.manual .point.hint,
 .frame .points .point.hint p {
     border-color: #3aeb34;
 } 
