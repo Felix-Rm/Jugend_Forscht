@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomes Fahren</title>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <div id="header" class="header">
+        <h1>Interaktive Präsentation - Entwicklung eines Fahrzeugmodels auf der Grundlage des autonomen Fahrens</h1>
+    </div>
+
+    <table id="manual" class="manual">
+        <tr>
+            <td>
+                <h1>Bedienung:</h1>
+            </td>
+        </tr>
+        <tr>
+            <td class="indent">Bauteilinformation:</td>
+            <td class="points">
+                <div class="point hint">
+                    <p class="material-icons">add</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="indent">Bauteilgruppe öffnen:</td>
+            <td class="points">
+                <div class="point">
+                    <p class="material-icons">add</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="indent">Zurück zu Übergeordnet:</td>
+            <td>
+                <p class="back_button inactive">Zurück</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p id="wait_msg"></p>
+            </td>
+            <td><button id="manual_ok">Ok</button></td>
+        </tr>
+    </table>
+
+    <main id="main">
+        <table id="path" class="path">
+            <tr>
+                <td>
+                    <p id="back_button" class="back_button inactive">Zurück</p>
+                </td>
+                <td>
+                    <p id="current_path"></p>
+                </td>
+            </tr>
+        </table>
+
+    </main>
+
+</body>
+
+</html>
