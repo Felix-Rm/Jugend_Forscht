@@ -9,7 +9,7 @@ let videos_load_end = 0
 
 
 let animating = false
-let origin = "Prototyp 2"
+let origin = "Prototyp_2"
 
 
 let state = JSON.parse(localStorage.getItem('state'))
@@ -188,6 +188,7 @@ function openFrame() {
 }
 
 async function loadJson(filepath) {
+    filepath = window.location.href.replace('index.html', '') + filepath
     try {
         console.log("loading", filepath)
         let req = await fetch(filepath)
@@ -205,6 +206,7 @@ async function loadJson(filepath) {
 }
 
 async function loadVideo(filepath) {
+    filepath = window.location.href.replace('index.html', '') + filepath
     try {
         console.log("loading", filepath)
         let req = await fetch(filepath)
