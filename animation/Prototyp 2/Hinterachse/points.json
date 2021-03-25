@@ -1,7 +1,7 @@
 {
     "info": [
         "<h1>Hinterachse</h1>",
-        "<p>Angetrieben wird das Auto von zwei Lego Power Functions Motoren im Heck. Die Geschwindigkeit der Motoren wird über PWM vom Mikrocontroller aus geregelt, welcher von dem Drehwertgeber ein Geschwindigkeits-Feedback bekommt. Die Motoren sind durch eine Reihe an Zahnrädern (Übersetzung 2:1) an die Hinterachse gekoppelt. Die beiden Räder an der Hinterachse sind durch ein Differential verbunden um ein Rutschen der Räder in der Kurve.</p>"
+        "<p>Angetrieben wird das Auto von zwei Lego Power Functions Motoren im Heck. Die Geschwindigkeit der Motoren wird über PWM vom Mikrocontroller aus geregelt, welcher von dem Drehwertgeber ein Geschwindigkeits-Feedback bekommt. Die Motoren sind durch eine Reihe von Zahnrädern (Übersetzung 2:1) an die Hinterachse gekoppelt. Die beiden Räder an der Hinterachse sind durch ein Differential verbunden um ein Rutschen der Räder in der Kurve.</p>"
     ],
     "points": [
         {

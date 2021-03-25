@@ -25,8 +25,8 @@ function handleError() {
     console.log("error", state)
     state.path = origin
 
-    alert("Es ist leider ein Fehler aufgetreten!\n\nDie Seite wird nun neu laden um den Fehler zu beheben.")
-    location.reload()
+    //alert("Es ist leider ein Fehler aufgetreten!\n\nDie Seite wird nun neu laden um den Fehler zu beheben.")
+    //location.reload()
 }
 
 
@@ -188,21 +188,38 @@ function openFrame() {
 }
 
 async function loadJson(filepath) {
-    let req = await fetch(filepath)
-    if (req.ok)
-        return (await req.json())
-    else
-        handleError()
+    try {
+        console.log("loading", filepath)
+        let req = await fetch(filepath)
+        if (req.ok) {
+            console.log("loaded", filepath)
+            return (await req.json())
+        } else {
+            console.log("error", filepath)
+            handleError()
+        }
+    } catch (e) {
+        console.error(e)
+    }
     return null
 }
 
 async function loadVideo(filepath) {
-    let req = await fetch(filepath)
-    if (req.ok) {
-        videoLoad()
-        return (URL.createObjectURL(await req.blob()))
-    } else {
-        handleError()
+    try {
+        console.log("loading", filepath)
+        let req = await fetch(filepath)
+        if (req.ok) {
+            let blob = await req.blob()
+            let url = URL.createObjectURL(blob)
+            console.log("loaded", filepath, url)
+            videoLoad()
+            return url
+        } else {
+            console.log("error", filepath)
+            handleError()
+        }
+    } catch (e) {
+        console.error(filepath, e)
     }
     return null
 }
