@@ -25,8 +25,8 @@ function handleError() {
     console.log("error", state)
     state.path = origin
 
-    //alert("Es ist leider ein Fehler aufgetreten!\n\nDie Seite wird nun neu laden um den Fehler zu beheben.")
-    //location.reload()
+    alert("Es ist leider ein Fehler aufgetreten!\n\nDie Seite wird nun neu laden um den Fehler zu beheben.")
+    location.reload()
 }
 
 
